@@ -1,9 +1,6 @@
 package test;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
-
 import junit.framework.Assert;
 import model.MircString;
 

@@ -29,13 +29,13 @@ public enum QuoteCache {
     private QuoteCache() {
     }
     
-    public MircStringPaul quotesToday() {
+    public MircString quotesToday() {
     	quotes = ReadLog.Load();
     	LocalDate date = LocalDate.now();
     	Long output = Statistics.DailyQuotes(quotes, date);
     	System.out.println("quotecache output: " + output);
     	String inputString = "Total quotes for today: " + output.toString();
-    	MircStringPaul string = new MircStringPaul(inputString);
+    	MircString string = MircString.of(inputString);
     	return string;
     }
     

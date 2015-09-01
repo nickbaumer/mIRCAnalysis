@@ -26,7 +26,7 @@ public class QuoteResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("today")
 	public Response quotesToday() {
-		MircStringPaul quote = QuoteCache.INST.quotesToday();
+		MircString quote = QuoteCache.INST.quotesToday();
 		Response resp = null;
 		if (quote.toString() != "") {
 			resp = Response.ok(quote).build();
