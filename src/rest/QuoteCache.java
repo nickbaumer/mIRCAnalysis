@@ -24,13 +24,15 @@ import model.Reddit;
 public enum QuoteCache {
     INST;
     
-	private static ArrayList<QuoteLine> quotes = ReadLog.Load();
+	// filename on statb0t
+	static String file =  "\\\\192.168.0.5\\c\\mirc\\logs\\#dagodz.QuakeNet.log";
+	private static ArrayList<QuoteLine> quotes = ReadLog.Load(file);
 	
     private QuoteCache() {
     }
     
     public MircString quotesToday() {
-    	quotes = ReadLog.Load();
+    	quotes = ReadLog.Load(file);
     	LocalDate date = LocalDate.now();
     	Long output = Statistics.DailyQuotes(quotes, date);
     	System.out.println("quotecache output: " + output);

@@ -14,13 +14,14 @@ import model.*;
 
 	public class ReadLog {
 
-		public static ArrayList<QuoteLine> Load() {
+		public static ArrayList<QuoteLine> Load(String file) {
 			ArrayList<QuoteLine> quoteLines = new ArrayList<QuoteLine>();
 			try {
 				//File file = new File("\\\\192.168.0.5\\c\\mirc\\logs\\#dagodz.QuakeNet.log");
-				File file = new File("c:\\temp\\test.txt");
-				System.out.println("File success");
-				FileReader fileReader = new FileReader(file);
+				//File file = new File("c:\\temp\\test.txt");
+				// incFile is now dynamically passed to enable differing logs to be parsed
+				File incFile = new File(file);
+				FileReader fileReader = new FileReader(incFile);
 				BufferedReader bufferedReader = new BufferedReader(fileReader);
 				StringBuffer stringBuffer = new StringBuffer();
 				String line;
