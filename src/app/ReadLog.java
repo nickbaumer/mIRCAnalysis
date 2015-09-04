@@ -27,11 +27,6 @@ import model.*;
 				String line;
 //				ArrayList<String> time = new ArrayList<String>();
 								
-				Nicks quoteNicks = new Nicks();
-				
-				// for QuoteLine
-				
-				
 				
 				// to handle change of date
 				
@@ -77,11 +72,6 @@ import model.*;
 									LocalDateTime quoteTime = LocalDateTime.of(year, month, day, hour, minute);
 									
 									int endNick = line.indexOf(">");
-									
-									//new
-									quoteNicks.addNick(line.substring(9,endNick));
-																										
-									Nicks.incrementNick(line.substring(9,endNick));
 									
 									// new class testing
 									

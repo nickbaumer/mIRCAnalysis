@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 
 import app.ReadLog;
 import model.*;
-import model.Reddit;
 
 public enum QuoteCache {
     INST;
@@ -49,7 +48,7 @@ public enum QuoteCache {
     }
     
     public MircString lanCountdown() {
-    	LocalDateTime lan = LocalDateTime.of(2015, 8, 28, 18, 0, 0);
+    	LocalDateTime lan = LocalDateTime.of(2016, 4, 29, 18, 0, 0);
     	LocalDateTime now = LocalDateTime.now();
     	Long seconds = now.until(lan, ChronoUnit.SECONDS);
 		int totalSeconds = (60 * 60 * 24 * 365 * 1000);
@@ -119,6 +118,26 @@ public enum QuoteCache {
     	MircString mircString = new MircString();
     	String redditOutput = Reddit.redditTopLink(subreddit);
     	mircString = MircString.of(redditOutput);
+    	return mircString;
+    }
+    
+    public MircString stats() {
+    	MircString mircString = new MircString();
+    	LocalDate dateFrom = LocalDate.of(2015, 1, 1);
+    	LocalDate dateTo = LocalDate.of(2016, 1, 1);
+    	ArrayList<NicksAndLines> unsortedOutput = Statistics.topNicks(quotes, dateFrom, dateTo);
+    	ArrayList<NicksAndLines> output = NicksAndLines.sortDesc(unsortedOutput);
+    	StringBuffer stringBuffer = new StringBuffer();
+    	String initial = "Quote summary: ";
+    	stringBuffer.append(initial);
+    	for (int i=0;i<output.size() && i<10;i++){
+    		if (i>0) { 
+    			stringBuffer.append(", "); 
+    			}
+    		String tempString = output.get(i).getNick() + " - " + output.get(i).getLines();
+    		stringBuffer.append(tempString);
+    	}
+    	mircString = MircString.of(stringBuffer.toString());
     	return mircString;
     }
     

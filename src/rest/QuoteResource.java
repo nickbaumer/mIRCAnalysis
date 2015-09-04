@@ -112,4 +112,19 @@ public class QuoteResource {
 		}
 		return resp;
 	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("stats")
+	public Response stats() {
+		MircString quote = QuoteCache.INST.stats();
+		Response resp = null;
+		if (quote.toString() != "") {
+			resp = Response.ok(quote).build();
+			// TaskCache.INST.incrementTask(task);
+		} else {
+			resp = Response.noContent().build();
+		}
+		return resp;
+	}
 }

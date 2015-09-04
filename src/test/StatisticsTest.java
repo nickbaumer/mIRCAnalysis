@@ -2,12 +2,15 @@ package test;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import org.junit.Assert;
 import org.junit.Test;
 import static org.junit.Assert.assertThat;
 
 import app.ReadLog;
+import model.NicksAndLines;
 import model.QuoteLine;
 import model.Statistics;
 
@@ -59,6 +62,22 @@ public class StatisticsTest {
 	public void quotesFromToTest() {
 		Long output = Statistics.quotesFromTo(quotes, testDate, testDate2);
 		Assert.assertTrue(output == 1831);
+	}
+	
+	@Test
+	public void uniqueNicksTest() {
+		ArrayList<String> nicks = Statistics.uniqueNicks(quotes);
+		Assert.assertTrue(nicks != null);
+	}
+	
+	@Test
+	public void topNicksTest() {
+		ArrayList<NicksAndLines> nicks = Statistics.topNicks(quotes, testDate, testDate2);
+		ArrayList<NicksAndLines> nicksSorted = NicksAndLines.sortDesc(nicks);
+		for (int i=0; i<nicksSorted.size();i++) {
+			System.out.println(nicks.get(i).getNick() + " - " + nicks.get(i).getLines());
+		}
+		Assert.assertTrue(nicks != null);
 	}
 
 }

@@ -55,6 +55,30 @@ public class Statistics {
 		return output;
 		
 	}
+	
+	public static Long quotesNickFromTo(ArrayList<QuoteLine> quotes, String nick, LocalDate dateFrom, LocalDate dateTo) {
+		
+		// Returns the total number of quotes within a date range
+		
+		// Convert Date to DateTime
+		
+		LocalTime midnight = LocalTime.MIDNIGHT;
+		LocalDateTime dateTimeAfter = LocalDateTime.of(dateFrom, midnight);
+		LocalDateTime dateTimeBefore = LocalDateTime.of(dateTo.plusDays(1), midnight);
+		
+		// Filter collection of quotes
+		
+		Long output = quotes.stream()
+		.filter(e -> ((QuoteLine) e).date().isAfter(dateTimeAfter))
+		.filter(e -> ((QuoteLine) e).date().isBefore(dateTimeBefore))
+		.filter(e -> ((QuoteLine) e).nick().equals(nick))
+		.collect(Collectors.counting());
+		
+		// Return Long
+		
+		return output;
+		
+	}
 
 	public static Long nickQuotes(ArrayList<QuoteLine> quotes, String nick) {
 		
@@ -153,20 +177,46 @@ public class Statistics {
 	public static String randomSingleQuote(ArrayList<QuoteLine> quotes){
 		// This object expects an object<QuoteLine> containing all lines
 		Long totalQuotes = quotes.stream()
-		.collect(Collectors.counting());
+				.collect(Collectors.counting());
 		// Select a random number to return
 		Random rand = new Random();
 		int  n = rand.nextInt(totalQuotes.intValue()) + 0;
-		
+
 		ArrayList<QuoteLine> randomQuote = (ArrayList<QuoteLine>) quotes.stream()
 				.collect(Collectors.toList());
-				
-		
+
 		return randomQuote.get(n).nick() + ": " + randomQuote.get(n).quote();
-		
 	}
 	
-}
-
-
+	public static ArrayList<String> uniqueNicks(ArrayList<QuoteLine> quotes) {
+		ArrayList<String> nicks = new ArrayList<String>();
+		for (int i=0; i < quotes.size(); i++) {
+			int nickSize = nicks.size();
+			boolean addNick = true;
+			int j = 0;
+			while (j < nickSize && addNick) {
+				if (nicks.get(j).toString().contains(quotes.get(i).nick())) {
+					addNick = false;
+				}
+				j++;
+			}
+			if (addNick) {
+				nicks.add(quotes.get(i).nick());
+			}
+		}
+		return nicks;
+	}
+	
+	public static ArrayList<NicksAndLines> topNicks(ArrayList<QuoteLine> quotes, LocalDate from, LocalDate to) {
+		ArrayList<String> nicks = uniqueNicks(quotes);
+		ArrayList<NicksAndLines> nicksAndLines = new ArrayList<NicksAndLines>();
+		for (int i=0; i<nicks.size();i++){
+			NicksAndLines nicksAndLinesSingle = new NicksAndLines();
+			nicksAndLinesSingle.setLines(quotesNickFromTo(quotes, nicks.get(i), from, to));
+			nicksAndLinesSingle.setNick(nicks.get(i));
+			nicksAndLines.add(nicksAndLinesSingle);
+		}
+		return nicksAndLines;
+	}
+	
 }
