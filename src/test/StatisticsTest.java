@@ -15,42 +15,42 @@ public class StatisticsTest {
 	
 	String testFile = "c:\\temp\\test.txt";
 	LocalDate testDate = LocalDate.of(2015,  8, 3);
-	ArrayList<QuoteLine> quotes = ReadLog.Load(testFile);
+	ArrayList<QuoteLine> quotes = ReadLog.load(testFile);
 	String nick = "Vyper";
 	
 	@Test
-	public void DailyQuotes() {
-		Long output = Statistics.DailyQuotes(quotes, testDate);
+	public void dailyQuotes() {
+		Long output = Statistics.dailyQuotes(quotes, testDate);
 		Assert.assertTrue(output == 510);
 	}
 	
 	@Test
-	public void NickQuotes() {
-		Long output = Statistics.NickQuotes(quotes, nick);
+	public void nickQuotes() {
+		Long output = Statistics.nickQuotes(quotes, nick);
 		Assert.assertTrue(output == 746);
 	}
 	
 	@Test
-	public void DailyNickQuotes() {
-		Long output = Statistics.DailyNickQuotes(quotes, nick, testDate);
+	public void dailyNickQuotes() {
+		Long output = Statistics.dailyNickQuotes(quotes, nick, testDate);
 		Assert.assertTrue(output == 105);
 	}
 	
 	@Test
-	public void MostSaidWord() {
-		String output = Statistics.MostSaidWord(quotes);
+	public void mostSaidWord() {
+		String output = Statistics.mostSaidWord(quotes);
 		Assert.assertTrue(output.equals("lol"));
 	}
 	
 	@Test
-	public void RandomQuote() {
-		String output = Statistics.RandomQuote(quotes, nick);
+	public void randomQuote() {
+		String output = Statistics.randomQuote(quotes, nick);
 		Assert.assertTrue(output.getClass() == String.class);
 	}
 	
 	@Test
-	public void RandomSingleQuote() {
-		String output = Statistics.RandomSingleQuote(quotes);
+	public void randomSingleQuote() {
+		String output = Statistics.randomSingleQuote(quotes);
 		Assert.assertTrue(output.getClass() == String.class);
 	}
 

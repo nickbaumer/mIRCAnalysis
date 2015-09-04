@@ -14,7 +14,7 @@ import model.*;
 
 	public class ReadLog {
 
-		public static ArrayList<QuoteLine> Load(String file) {
+		public static ArrayList<QuoteLine> load(String file) {
 			ArrayList<QuoteLine> quoteLines = new ArrayList<QuoteLine>();
 			try {
 				//File file = new File("\\\\192.168.0.5\\c\\mirc\\logs\\#dagodz.QuakeNet.log");
@@ -79,14 +79,14 @@ import model.*;
 									int endNick = line.indexOf(">");
 									
 									//new
-									quoteNicks.AddNick(line.substring(9,endNick));
+									quoteNicks.addNick(line.substring(9,endNick));
 																										
-									Nicks.IncrementNick(line.substring(9,endNick));
+									Nicks.incrementNick(line.substring(9,endNick));
 									
 									// new class testing
 									
 									QuoteLine quoteLine = new QuoteLine();
-									quoteLine.Add(quoteTime, line.substring(9,endNick), line.substring(endNick + 2, line.length()));
+									quoteLine.add(quoteTime, line.substring(9,endNick), line.substring(endNick + 2, line.length()));
 									quoteLines.add(quoteLine);
 									
 								}

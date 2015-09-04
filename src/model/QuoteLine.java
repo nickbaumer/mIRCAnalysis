@@ -36,7 +36,7 @@ public class QuoteLine {
 		return id;
 	}
 	
-	public void Add(LocalDateTime datetime, String nick, String quote){
+	public void add(LocalDateTime datetime, String nick, String quote){
 		quotedatetime = datetime;
 		quotenick = nick;
 		quotetext = quote;
@@ -60,23 +60,23 @@ public class QuoteLine {
 		
 	}
 	
-	public String Nick(){
+	public String nick(){
 		return quotenick;
 	}
 	
-	public String Quote(){
+	public String quote(){
 		return quotetext;
 	}
 	
-	public LocalDateTime Date(){
+	public LocalDateTime date(){
 		return quotedatetime;
 	}
 	
-	public static LocalDateTime EarliestQuote(){
+	public static LocalDateTime earliestQuote(){
 		return earliestQuote;
 	}
 	
-	public static LocalDateTime LatestQuote(){
+	public static LocalDateTime latestQuote(){
 		return latestQuote;
 	}
 	

@@ -26,15 +26,15 @@ public enum QuoteCache {
     
 	// filename on statb0t
 	static String file =  "\\\\192.168.0.5\\c\\mirc\\logs\\#dagodz.QuakeNet.log";
-	private static ArrayList<QuoteLine> quotes = ReadLog.Load(file);
+	private static ArrayList<QuoteLine> quotes = ReadLog.load(file);
 	
     private QuoteCache() {
     }
     
     public MircString quotesToday() {
-    	quotes = ReadLog.Load(file);
+    	quotes = ReadLog.load(file);
     	LocalDate date = LocalDate.now();
-    	Long output = Statistics.DailyQuotes(quotes, date);
+    	Long output = Statistics.dailyQuotes(quotes, date);
     	System.out.println("quotecache output: " + output);
     	String inputString = "Total quotes for today: " + output.toString();
     	MircString string = MircString.of(inputString);
@@ -42,7 +42,7 @@ public enum QuoteCache {
     }
     
     public MircString randomSingleQuote() {
-    	String string = Statistics.RandomSingleQuote(quotes);
+    	String string = Statistics.randomSingleQuote(quotes);
     	String outputString = "A random quote: " + string;
     	MircString mircString = MircString.of(outputString);
     	return mircString;
