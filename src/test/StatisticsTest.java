@@ -15,6 +15,7 @@ public class StatisticsTest {
 	
 	String testFile = "c:\\temp\\test.txt";
 	LocalDate testDate = LocalDate.of(2015,  8, 3);
+	LocalDate testDate2 = LocalDate.of(2015, 8, 5);
 	ArrayList<QuoteLine> quotes = ReadLog.load(testFile);
 	String nick = "Vyper";
 	
@@ -52,6 +53,12 @@ public class StatisticsTest {
 	public void randomSingleQuote() {
 		String output = Statistics.randomSingleQuote(quotes);
 		Assert.assertTrue(output.getClass() == String.class);
+	}
+	
+	@Test
+	public void quotesFromToTest() {
+		Long output = Statistics.quotesFromTo(quotes, testDate, testDate2);
+		Assert.assertTrue(output == 1831);
 	}
 
 }

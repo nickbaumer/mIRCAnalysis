@@ -32,6 +32,29 @@ public class Statistics {
 		return output;
 		
 	}
+	
+	public static Long quotesFromTo(ArrayList<QuoteLine> quotes, LocalDate dateFrom, LocalDate dateTo) {
+		
+		// Returns the total number of quotes within a date range
+		
+		// Convert Date to DateTime
+		
+		LocalTime midnight = LocalTime.MIDNIGHT;
+		LocalDateTime dateTimeAfter = LocalDateTime.of(dateFrom, midnight);
+		LocalDateTime dateTimeBefore = LocalDateTime.of(dateTo.plusDays(1), midnight);
+		
+		// Filter collection of quotes
+		
+		Long output = quotes.stream()
+		.filter(e -> ((QuoteLine) e).date().isAfter(dateTimeAfter))
+		.filter(e -> ((QuoteLine) e).date().isBefore(dateTimeBefore))
+		.collect(Collectors.counting());
+		
+		// Return Long
+		
+		return output;
+		
+	}
 
 	public static Long nickQuotes(ArrayList<QuoteLine> quotes, String nick) {
 		
@@ -143,4 +166,7 @@ public class Statistics {
 		
 	}
 	
+}
+
+
 }
