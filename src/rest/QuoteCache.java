@@ -115,10 +115,9 @@ public enum QuoteCache {
 			return mircString;
     }
     
-    public MircString reddit(){
+    public MircString reddit(String subreddit){
     	MircString mircString = new MircString();
-    	String s = "all";
-    	String redditOutput = Reddit.redditTopLink(s);
+    	String redditOutput = Reddit.redditTopLink(subreddit);
     	mircString = MircString.of(redditOutput);
     	return mircString;
     }

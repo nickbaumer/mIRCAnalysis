@@ -84,9 +84,10 @@ public class QuoteResource {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("reddit")
-	public Response reddit() {
-		MircString quote = QuoteCache.INST.reddit();
+	@Path("reddit/{subreddit}")
+	public Response reddit(@PathParam("subreddit") String subreddit) {
+		System.out.println("subreddit string is: "+subreddit);
+		MircString quote = QuoteCache.INST.reddit(subreddit);
 		Response resp = null;
 		if (quote.toString() != "") {
 			resp = Response.ok(quote).build();
