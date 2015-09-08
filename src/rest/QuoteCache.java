@@ -10,13 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.Random;
-import java.util.stream.Collectors;
-
 import app.ReadLog;
 import model.*;
 
@@ -76,9 +70,7 @@ public enum QuoteCache {
 				stringBuffer.add(line);
 			}
 			fileReader.close();
-			Long numberQuotes = stringBuffer.stream()
-    				.collect(Collectors.counting());	
-    		Random rand = new Random();
+			Random rand = new Random();
     		int  n = rand.nextInt(stringBuffer.size()) + 0;
     		mircString = MircString.of(stringBuffer.get(n));
     	}
@@ -101,9 +93,7 @@ public enum QuoteCache {
 				stringBuffer.add(line);
 			}
 			fileReader.close();
-			Long numberQuotes = stringBuffer.stream()
-    				.collect(Collectors.counting());	
-    		Random rand = new Random();
+			Random rand = new Random();
     		int  n = rand.nextInt(stringBuffer.size()) + 0;
     		mircString = MircString.of(stringBuffer.get(n));
     	}
@@ -139,6 +129,29 @@ public enum QuoteCache {
     	}
     	mircString = MircString.of(stringBuffer.toString());
     	return mircString;
+    }
+    
+    public MircString joke() {
+    	MircString mircString = new MircString();
+    	try {
+    		File file = new File("c:\\temp\\jokes.txt");
+	    	FileReader fileReader = new FileReader(file);
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			ArrayList<String> stringBuffer = new ArrayList<String>();
+			String line;
+			while ((line = bufferedReader.readLine()) != null) {
+				stringBuffer.add(line);
+			}
+			fileReader.close();
+			Random rand = new Random();
+    		int  n = rand.nextInt(stringBuffer.size()) + 0;
+    		mircString = MircString.of(stringBuffer.get(n));
+    	}
+			catch (IOException e) {
+				e.printStackTrace();
+		}
+    		
+			return mircString;
     }
     
 }

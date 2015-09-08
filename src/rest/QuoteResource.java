@@ -1,23 +1,11 @@
 package rest;
 
-import java.util.Date;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.ResponseBuilder;
-
 import model.*;
 
 @Path("tasks")
@@ -118,6 +106,21 @@ public class QuoteResource {
 	@Path("stats")
 	public Response stats() {
 		MircString quote = QuoteCache.INST.stats();
+		Response resp = null;
+		if (quote.toString() != "") {
+			resp = Response.ok(quote).build();
+			// TaskCache.INST.incrementTask(task);
+		} else {
+			resp = Response.noContent().build();
+		}
+		return resp;
+	}
+
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("joke")
+	public Response joke() {
+		MircString quote = QuoteCache.INST.joke();
 		Response resp = null;
 		if (quote.toString() != "") {
 			resp = Response.ok(quote).build();

@@ -2,13 +2,8 @@ package test;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-
 import org.junit.Assert;
 import org.junit.Test;
-import static org.junit.Assert.assertThat;
-
 import app.ReadLog;
 import model.NicksAndLines;
 import model.QuoteLine;
