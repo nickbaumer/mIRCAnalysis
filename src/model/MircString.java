@@ -5,6 +5,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.glassfish.jersey.server.ResourceConfig;
+
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.PROPERTY)
 public class MircString {

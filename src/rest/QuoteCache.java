@@ -48,7 +48,7 @@ public enum QuoteCache {
 		int totalSeconds = (60 * 60 * 24 * 365 * 1000);
 		BigDecimal bigSeconds = new BigDecimal(totalSeconds);
 		BigDecimal secondsLeft = new BigDecimal(seconds);
-		BigDecimal millennia = secondsLeft.divide(bigSeconds, 50, RoundingMode.CEILING);
+		BigDecimal millennia = secondsLeft.divide(bigSeconds, 50, RoundingMode.HALF_UP);
     	String inputString = "There are " + seconds.toString() + " seconds to LAN - you'd better be prepared for it, mofos. Or, if you're Ragnar, there are " + millennia + " millennia left.";
     	if (seconds < 0) {
     		seconds = Math.abs(seconds);
@@ -61,7 +61,7 @@ public enum QuoteCache {
     public MircString gangnamStyle() {
     	MircString mircString = new MircString();
     	try {
-    		File file = new File("c:\\temp\\gangnamstyle.txt");
+    		File file = new File("gangnamstyle.txt");
 	    	FileReader fileReader = new FileReader(file);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			ArrayList<String> stringBuffer = new ArrayList<String>();
@@ -84,7 +84,7 @@ public enum QuoteCache {
     public MircString whatDoesTheFoxSay() {
     	MircString mircString = new MircString();
     	try {
-    		File file = new File("c:\\temp\\whatdoesthefoxsay.txt");
+    		File file = new File("whatdoesthefoxsay.txt");
 	    	FileReader fileReader = new FileReader(file);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			ArrayList<String> stringBuffer = new ArrayList<String>();
@@ -134,7 +134,7 @@ public enum QuoteCache {
     public MircString joke() {
     	MircString mircString = new MircString();
     	try {
-    		File file = new File("c:\\temp\\jokes.txt");
+    		File file = new File("jokes.txt");
 	    	FileReader fileReader = new FileReader(file);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			ArrayList<String> stringBuffer = new ArrayList<String>();

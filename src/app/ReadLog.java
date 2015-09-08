@@ -166,7 +166,7 @@ public class ReadLog {
 									String insertQuery = "INSERT INTO MIRCANALYSIS_WORDS (word) VALUES (?)";
 									try {								
 										for (String ss : arr) {
-											if (ss.substring(ss.length()-1,ss.length()).equals(",")) {
+											if (ss.length() > 2 && ss.substring(ss.length()-1,ss.length()).equals(",")) {
 												ss = ss.substring(0,ss.length()-1);
 											}
 											if (ss.length()>2 && (!Arrays.asList(excludedWords).contains(ss) && !ss.substring(0,1).equals("!"))){
@@ -198,7 +198,7 @@ public class ReadLog {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			System.out.println("ReadLog size: " + quoteLines.size());
+			System.out.println("Successfully added new quotes. ReadLog size: " + quoteLines.size());
 			return quoteLines;
 		}
 	}

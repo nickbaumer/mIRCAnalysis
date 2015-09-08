@@ -5,12 +5,14 @@ import java.util.Collections;
 import java.util.Comparator;
 
 class SortDesc implements Comparator<NicksAndLines>{
+	@Override
 	public int compare(NicksAndLines nick1, NicksAndLines nick2) {
 		return nick2.getLines().compareTo(nick1.getLines());
 	}
 }
 
 class SortAsc implements Comparator<NicksAndLines>{
+	@Override
 	public int compare(NicksAndLines nick1, NicksAndLines nick2) {
 		return nick1.getLines().compareTo(nick2.getLines());
 	}

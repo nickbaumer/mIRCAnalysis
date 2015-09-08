@@ -23,8 +23,8 @@ public class Statistics {
 		// Filter collection of quotes
 		
 		Long output = quotes.stream()
-		.filter(e -> ((QuoteLine) e).date().isAfter(dateTimeAfter))
-		.filter(e -> ((QuoteLine) e).date().isBefore(dateTimeBefore))
+		.filter(e -> e.date().isAfter(dateTimeAfter))
+		.filter(e -> e.date().isBefore(dateTimeBefore))
 		.collect(Collectors.counting());
 		
 		// Return Long
@@ -46,8 +46,8 @@ public class Statistics {
 		// Filter collection of quotes
 		
 		Long output = quotes.stream()
-		.filter(e -> ((QuoteLine) e).date().isAfter(dateTimeAfter))
-		.filter(e -> ((QuoteLine) e).date().isBefore(dateTimeBefore))
+		.filter(e -> e.date().isAfter(dateTimeAfter))
+		.filter(e -> e.date().isBefore(dateTimeBefore))
 		.collect(Collectors.counting());
 		
 		// Return Long
@@ -69,9 +69,9 @@ public class Statistics {
 		// Filter collection of quotes
 		
 		Long output = quotes.stream()
-		.filter(e -> ((QuoteLine) e).date().isAfter(dateTimeAfter))
-		.filter(e -> ((QuoteLine) e).date().isBefore(dateTimeBefore))
-		.filter(e -> ((QuoteLine) e).nick().equals(nick))
+		.filter(e -> e.date().isAfter(dateTimeAfter))
+		.filter(e -> e.date().isBefore(dateTimeBefore))
+		.filter(e -> e.nick().equals(nick))
 		.collect(Collectors.counting());
 		
 		// Return Long
@@ -87,7 +87,7 @@ public class Statistics {
 		// Filter collection of quotes
 		
 		Long output = quotes.stream()
-		.filter(e -> ((QuoteLine) e).nick().equals(nick))
+		.filter(e -> e.nick().equals(nick))
 		.collect(Collectors.counting());
 		
 		// Return Long
@@ -109,9 +109,9 @@ public class Statistics {
 	// Filter collection of quotes
 		
 		Long output = quotes.stream()
-		.filter(e -> ((QuoteLine) e).nick().equals(nick))
-		.filter(e -> ((QuoteLine) e).date().isAfter(dateTimeAfter))
-		.filter(e -> ((QuoteLine) e).date().isBefore(dateTimeBefore))
+		.filter(e -> e.nick().equals(nick))
+		.filter(e -> e.date().isAfter(dateTimeAfter))
+		.filter(e -> e.date().isBefore(dateTimeBefore))
 		.collect(Collectors.counting());
 		
 		// Return Long
@@ -143,7 +143,7 @@ public class Statistics {
 		for (int i=0; i < words.size(); i++) {
 			String word = words.get(i).toString();
 			wordCount = words.stream()
-			.filter(e-> ((String) e).equals(word))
+			.filter(e-> e.equals(word))
 			.collect(Collectors.counting());
 		
 		if (wordCount > maxCount && (!Arrays.asList(excludedWords).contains(word) && !word.substring(0,1).equals("!")) && word.length()>2){
@@ -159,14 +159,14 @@ public class Statistics {
 	public static String randomQuote(ArrayList<QuoteLine> quotes, String nick){
 		// This object expects an object<QuoteLine> containing all lines
 		Long totalQuotes = quotes.stream()
-		.filter(e -> ((QuoteLine) e).nick().equals(nick))
+		.filter(e -> e.nick().equals(nick))
 		.collect(Collectors.counting());
 		// Select a random number to return
 		Random rand = new Random();
 		int  n = rand.nextInt(totalQuotes.intValue()) + 0;
 		
 		ArrayList<QuoteLine> randomQuote = (ArrayList<QuoteLine>) quotes.stream()
-				.filter(e -> ((QuoteLine) e).nick().equals(nick))
+				.filter(e -> e.nick().equals(nick))
 				.collect(Collectors.toList());
 				
 		
