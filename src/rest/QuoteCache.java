@@ -113,7 +113,7 @@ public enum QuoteCache {
     
     public MircString stats() {
     	MircString mircString = new MircString();
-    	LocalDate dateFrom = LocalDate.of(2015, 1, 1);
+    	LocalDate dateFrom = LocalDate.of(2010, 1, 1);
     	LocalDate dateTo = LocalDate.of(2016, 1, 1);
     	ArrayList<NicksAndLines> unsortedOutput = Statistics.topNicks(quotes, dateFrom, dateTo);
     	ArrayList<NicksAndLines> output = NicksAndLines.sortDesc(unsortedOutput);

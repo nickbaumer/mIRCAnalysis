@@ -55,7 +55,7 @@ public class ReadLog {
 //			create table to hold quotes
 			stmt.execute("CREATE TABLE IF NOT EXISTS MIRCANALYSIS_QUOTES(id int primary key auto_increment, nick varchar(255), date datetime, quote varchar(1000))");
 //			create table to hold words
-			stmt.execute("CREATE TABLE IF NOT EXISTS MIRCANALYSIS_WORDS(id int primary key auto_increment, word varchar(255))");
+			stmt.execute("CREATE TABLE IF NOT EXISTS MIRCANALYSIS_WORDS(id int primary key auto_increment, word varchar(1000))");
 			stmt.close();
 			connection.commit();
 		} catch (SQLException e) {
