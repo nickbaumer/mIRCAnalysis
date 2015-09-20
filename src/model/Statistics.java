@@ -212,9 +212,12 @@ public class Statistics {
 		ArrayList<NicksAndLines> nicksAndLines = new ArrayList<NicksAndLines>();
 		for (int i=0; i<nicks.size();i++){
 			NicksAndLines nicksAndLinesSingle = new NicksAndLines();
-			nicksAndLinesSingle.setLines(quotesNickFromTo(quotes, nicks.get(i), from, to));
-			nicksAndLinesSingle.setNick(nicks.get(i));
-			nicksAndLines.add(nicksAndLinesSingle);
+			Long numOfLines = quotesNickFromTo(quotes, nicks.get(i), from, to);
+			if (numOfLines > 0) {
+				nicksAndLinesSingle.setLines(numOfLines);
+				nicksAndLinesSingle.setNick(nicks.get(i));
+				nicksAndLines.add(nicksAndLinesSingle);
+			}
 		}
 		return nicksAndLines;
 	}

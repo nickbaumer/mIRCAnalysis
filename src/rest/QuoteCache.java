@@ -9,6 +9,7 @@ import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAmount;
 import java.util.ArrayList;
 import java.util.Random;
 import app.ReadLog;
@@ -111,10 +112,22 @@ public enum QuoteCache {
     	return mircString;
     }
     
-    public MircString stats() {
+    public MircString stats(String duration) {
+    	// valid durations
+    	// all, year, month, week, day
     	MircString mircString = new MircString();
-    	LocalDate dateFrom = LocalDate.of(2010, 1, 1);
-    	LocalDate dateTo = LocalDate.of(2016, 1, 1);
+    	// default
+    	LocalDate dateFrom = LocalDate.now().minusYears(10);
+    	if (duration.equals("year")){
+    		dateFrom = LocalDate.now().minusYears(1);
+    	} else if (duration.equals("month")) {
+    		dateFrom = LocalDate.now().minusMonths(1);
+    	} else if (duration.equals("week")) {
+    		dateFrom = LocalDate.now().minusWeeks(1);
+    	} else if (duration.equals("day")) {
+    		dateFrom = LocalDate.now().minusDays(1);
+    	}
+    	LocalDate dateTo = LocalDate.now();
     	ArrayList<NicksAndLines> unsortedOutput = Statistics.topNicks(quotes, dateFrom, dateTo);
     	ArrayList<NicksAndLines> output = NicksAndLines.sortDesc(unsortedOutput);
     	StringBuffer stringBuffer = new StringBuffer();
