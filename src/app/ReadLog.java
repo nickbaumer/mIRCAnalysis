@@ -17,7 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-
+import model.Alias;
 
 	
 
@@ -75,6 +75,7 @@ public class ReadLog {
 				e.printStackTrace();
 			}
 			ArrayList<QuoteLine> quoteLines = new ArrayList<QuoteLine>();
+			Alias aliases = new Alias();
 			try {
 				//File file = new File("\\\\192.168.0.5\\c\\mirc\\logs\\#dagodz.QuakeNet.log");
 				//File file = new File("c:\\temp\\test.txt");
@@ -138,14 +139,23 @@ public class ReadLog {
 									
 									int endNick = line.indexOf(">");
 									
-									// new class testing
+									// using alias check
+									
+									String extractedNickname = line.substring(9,endNick);
+									
+									// remove @
+									
+									if (extractedNickname.substring(0, 1).equals("@")) {
+										extractedNickname = extractedNickname.substring(1,extractedNickname.length());
+									}
+									
+									String nickname = aliases.check(extractedNickname);
 									
 									QuoteLine quoteLine = new QuoteLine();
-									quoteLine.add(quoteTime, line.substring(9,endNick), line.substring(endNick + 2, line.length()));
+									quoteLine.add(quoteTime, nickname, line.substring(endNick + 2, line.length()));
 									quoteLines.add(quoteLine);
 									
 									//db
-									String nickname = line.substring(9,endNick);
 									String quoteText = line.substring(endNick + 2, line.length());
 									try {
 										String insertQuery = "INSERT INTO MIRCANALYSIS_QUOTES (date, quote, nick) VALUES (?,?,?)";

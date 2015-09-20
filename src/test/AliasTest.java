@@ -8,7 +8,8 @@ import junit.framework.Assert;
 public class AliasTest {
 	@Test
 	public void checkTest() {
-		String output = Alias.check("Dave");
-		Assert.assertTrue(output.getClass() == String.class);
+		Alias alias = new Alias();
+		String output = alias.check("RagnarKarlssonTheSecond");
+		Assert.assertTrue(output.equals("Ragnar"));
 	}
 }
