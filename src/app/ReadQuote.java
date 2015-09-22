@@ -2,7 +2,6 @@ package app;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.Instant;
@@ -34,6 +33,7 @@ public class ReadQuote {
 				String quote = line.substring(endOfDate+1,line.length());
 				System.out.println("Nickname: "+nickname+" Date: "+date+" Quote: "+quote);
 			}
+			bufferedReader.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

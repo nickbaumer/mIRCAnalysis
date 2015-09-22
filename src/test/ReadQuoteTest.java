@@ -2,7 +2,6 @@ package test;
 
 import app.ReadQuote;
 import org.junit.Test;
-import junit.framework.Assert;
 
 public class ReadQuoteTest {
 	@Test
